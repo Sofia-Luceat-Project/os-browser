@@ -102,7 +102,7 @@ bun dev
 ---
 
 ## 🗺️ ロードマップ
-- [ ] Windowsライクな基本UIの実装
+- [x] Windowsライクな基本UIの実装
 - [ ] **[In Progress]** テーマエンジンの開発
 - [ ] **[Planning]** 拡張機能 SDK の公開
 - [ ] **[Crucial]** IPフィルタリング・セキュリティ設定画面の追加
