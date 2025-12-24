@@ -3,9 +3,13 @@ name: Build OS-Browser
 on:
   push:
     branches: [main, master]
+    tags: ["v*"]
   pull_request:
     branches: [main, master]
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -49,3 +53,14 @@ jobs:
           path: |
             backend/os-browser.exe
             backend/os-browser-linux
+
+      - name: Create Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            backend/os-browser.exe
+            backend/os-browser-linux
+          draft: false
+          prerelease: false
+          generate_release_notes: true
