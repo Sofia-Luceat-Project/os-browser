@@ -23,6 +23,10 @@ jobs:
         working-directory: ./frontend
         run: bun install
 
+      - name: Install Backend Dependencies
+        working-directory: ./backend
+        run: bun install
+
       - name: Build Frontend
         working-directory: ./frontend
         run: bun run build
