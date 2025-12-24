@@ -4,6 +4,9 @@
 
 Windows OS のような直感的で馴染みのあるデスクトップインターフェースを提供し、サーバー上のリソース（ファイルやフォルダ）をまるでローカル環境のように操作することを目指しています。
 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/ddb26be5-bd2a-4218-8e86-80019c20c853" />
+
+
 ---
 
 ## 🚀 ビジョン
