@@ -1,0 +1,47 @@
+name: Build OS-Browser
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install Frontend Dependencies
+        working-directory: ./frontend
+        run: bun install
+
+      - name: Build Frontend
+        working-directory: ./frontend
+        run: bun run build
+
+      - name: Bundle Assets
+        run: bun run bundle-assets.ts
+
+      - name: Build for Windows (EXE)
+        working-directory: ./backend
+        run: bun build --compile --minify index.ts --outfile os-browser.exe --target bun-windows-x64
+
+      - name: Build for Linux (Ubuntu)
+        working-directory: ./backend
+        run: bun build --compile --minify index.ts --outfile os-browser-linux --target bun-linux-x64
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: os-browser-builds
+          path: |
+            backend/os-browser.exe
+            backend/os-browser-linux
